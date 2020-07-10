@@ -18,12 +18,39 @@ plt.style.use('dark_background')
 #df_data = pd.read_csv("Octanos91.csv")
 df_data = pd.read_csv("DATOS.csv")
 
-colors = dict(zip(
-    ['Aguascalientes', 'B. C.', 'B.C. Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'CDMX', 'Coahuila', 'Colima', 'Durango', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán', 'Morelos', 'México', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas'],
-    ['#58FAF4', '#DF0101', '#DF7401', '#D7DF01', '#74DF00', '#01DF74', '#013ADF', '#A901DB', '#FF0080', '#F78181', '#F3F781', '#BEF781', '#81F79F', '#81F7F3', '#819FF7', '#F781F3', '#F7819F', '#F8E0E0', '#ECF6CE', '#FF0000', '#FF8000', '#FFFF00', '#BFFF00', '#00FF40', '#00BFFF', '#8000FF', '#BF00FF', '#FF00FF', '#FF00BF', '#FF0040', '#088A4B', '#088A85']))
+colores = {'Aguascalientes' : 'aqua',
+           'B. C.' : 'red',
+           'B.C. Sur' : 'white',
+           'Campeche' : 'bisque',
+           'Chiapas' : 'lime',
+           'Chihuahua' : 'sienna',
+           'CDMX' : 'violet',
+           'Coahuila' : 'plum',
+           'Colima' : 'purple',
+           'Durango' : 'gold',
+           'Guanajuato' : 'azure',
+           'Guerrero' : 'tan',
+           'Hidalgo' : 'coral',
+           'Jalisco' : 'hotpink',
+           'Michoacán' : 'blue',
+           'Morelos' : 'royalblue',
+           'México' : 'crimson',
+           'Nayarit' : 'beige',
+           'Nuevo León' : 'aqua',
+           'Oaxaca' : 'red',
+           'Puebla' : 'white',
+           'Querétaro' : 'aqua',
+           'Quintana Roo' : 'red',
+           'San Luis Potosí' : 'white',
+           'Sinaloa' : 'aqua',
+           'Sonora' : 'red',
+           'Tabasco' : 'white',
+           'Tamaulipas' : 'aqua',
+           'Tlaxcala' : 'red',
+           'Veracruz' : 'white',
+           'Yucatán' : 'aqua',
+           'Zacatecas' : 'orange'}
 
-grupo_lk=df_data.set_index('Entidad_Federativa').to_dict()
-#colors=plt.cm.Dark2(range(6))
 #Seleccionando conjunto de datos por año y por mes (de 2017 a 2020)
 DFacumulador = []
 for j in range (4):
@@ -54,7 +81,7 @@ def dibujar_grafica(i):
     #ax.set_title("Precio promedio mensual por litro de Diésel Enero 2017- Mayo 2020 \n en México por entidad federativa", fontdict=font)
     ax.set_xlabel('Precio en pesos mexicanos')
     ax.set_ylabel('Entidad federativa')
-    ax.barh(DFacumulador[i].Entidad_Federativa, DFacumulador[i].Gasolina_Min_87octanos, color=[colors[grupo_lk[x]] for x in df_Actual['Entidad_Federativa']])
+    ax.barh(DFacumulador[i].Entidad_Federativa, DFacumulador[i].Gasolina_Min_87octanos, color= DFacumulador[i].Entidad_Federativa.replace(colores))
     #ax.barh(DFacumulador[i].Entidad_Federativa, DFacumulador[i].Gasolina_Min_91octanos, color='coral')
     #ax.barh(DFacumulador[i].Entidad_Federativa, DFacumulador[i].Diésel, color='beige')
     Año = DFacumulador[i].iloc[1]['Año_Reporte']
@@ -78,7 +105,7 @@ def dibujar_grafica(i):
     ax.text(0.01, .01, "Datos obtenidos de: https://datos.gob.mx", transform=ax.transAxes, size=9, fontweight='bold', ha='left', color='silver')
 
 
-animator = animation.FuncAnimation(fig1, dibujar_grafica, frames=41, interval=1000, repeat=False)
+animator = animation.FuncAnimation(fig1, dibujar_grafica, frames=41, interval=300, repeat=False)
 #animator.save("GasolinaA.mp4", fps = None, bitrate = 1800)
 
 #plt.tight_layout()
