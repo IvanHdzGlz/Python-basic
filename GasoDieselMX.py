@@ -4,7 +4,7 @@
 Created on Tue Jun 30 20:44:56 2020
 @author: ElMaGo - FR 
 LABS
-Script que muestra las precios promedios mensuales de la gasolina y el Diesel en México Ene2017-Mayo2020
+Script que muestra las precios promedios mensuales de la gasolina en México Ene2017-Mayo2020 r1.1
 Archivo CSV recuperado de:
 https://datos.gob.mx/busca/dataset/ubicacion-de-gasolineras-y-precios-comerciales-de-gasolina-y-diesel-por-estacion/resource/575d6ced-44be-4df6-be2f-c8f6fad84bae
 """
