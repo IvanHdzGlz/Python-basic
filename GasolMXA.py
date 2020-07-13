@@ -42,7 +42,6 @@ def racing_barchart(Año):
 
     for k, (Gasolina_Min_87octanos, Entidad_Federativa) in enumerate(zip(dff['Gasolina_Min_87octanos'], dff['Entidad_Federativa'])):
         ax.text(Gasolina_Min_87octanos-dx, k-.5, Entidad_Federativa, color='black', fontsize=9, fontweight='bold', ha='right', va='bottom')#para todos los datos usar K-.5, sino K
-        #ax.text(value-dx, i-.25, group_lk[name], size=10, color='#444444', ha='right', va='baseline')
         ax.text(Gasolina_Min_87octanos+.05, k, f'${Gasolina_Min_87octanos:}', fontsize=9, ha='left',  va='center')
     
     ax.text(0.89, 0.07, '{}, {}'.format(i+1, Año), transform=ax.transAxes, color='silver', size=15, ha='left', fontweight='bold')
