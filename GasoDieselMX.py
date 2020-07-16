@@ -70,10 +70,10 @@ font = {'family': 'sans-serif',
         'weight': 'bold',
         'size': 12,
         }
-watermark = plt.imread('LogoNECwhite.png')
+#watermark = plt.imread('LogoNECwhite.png')
 fig1 = plt.figure(figsize=[13, 5])
 ax = fig1.add_subplot(111)
-ax.figure.figimage(watermark, 550, 200, alpha=.4, zorder=1)
+#ax.figure.figimage(watermark, 550, 200, alpha=.4, zorder=1)
 
 def dibujar_grafica(i):
     ax.clear()
@@ -88,13 +88,24 @@ def dibujar_grafica(i):
     high = 22
     plt.xlim([low, high])
     
-    for i in ax.patches:      
-        ax.text(i.get_width()+0.1, i.get_y()+0.1, '${}'.format(i.get_width()), fontsize=9, fontweight='bold', color='lightblue')
+    
+    
+    for k,(Gasolina_Min_87octanos, Entidad_Federativa) in enumerate(zip(DFacumulador[i]['Gasolina_Min_87octanos'], DFacumulador[i]['Entidad_Federativa'])):      
+        ax.text(Gasolina_Min_87octanos, k, Entidad_Federativa, color='black', fontsize=9, fontweight='bold', ha='right', va='bottom')#para todos los datos usar K-.5, sino K
+        ax.text(Gasolina_Min_87octanos+0.1, k, f'${Gasolina_Min_87octanos:}', fontsize=9, fontweight='bold', color='lightblue')
     ax.text(0.89, 0.07, '{}, {}'.format(Mes, Año), transform=ax.transAxes, size=15, fontweight='bold', ha='left', color='silver')  
     ax.text(0.01, .01, "Datos obtenidos de: https://datos.gob.mx", transform=ax.transAxes, size=9, fontweight='bold', ha='left', color='silver')
 
 
-animator = animation.FuncAnimation(fig1, dibujar_grafica, frames=41, interval=250, repeat=False)
+animator = animation.FuncAnimation(fig1, dibujar_grafica, frames=41, interval=750, repeat=False)
 plt.show()
 
 #animator.save('DATOSMAYO2020.mp4', writer="ffmpeg")
+animator.save("Gasolina87Octanos.mp4", fps = None, bitrate = 1800)
+
+#plt.tight_layout()
+plt.show()
+
+#animator.save('87OctanosMAYO2020.avi', writer="ffmpeg")
+#animator.save('91OctanosMAYO2020.mp4', writer="ffmpeg")
+#animator.save('DiéselMAYO2020.mp4', writer="ffmpeg")
